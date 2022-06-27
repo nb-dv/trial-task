@@ -1,0 +1,96 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: $baseFontsSize;
+  //overflow-x: hidden;
+  @include phone {
+    overflow-x: hidden;
+  }
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.2;
+  width: 100%;
+  overflow-x: hidden;
+  background: $main-bg;
+  color: $grey-color;
+}
+img {
+  max-width: 100%;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h1 {
+  font-size: rem(30px);
+  font-weight: 800;
+}
+
+input,
+button,
+textarea {
+  border: none;
+  cursor: pointer;
+}
+button {
+  background: transparent;
+  padding: 0;
+}
+
+input[type='submit'],
+input[type='reset'] {
+  cursor: pointer;
+}
+
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  height: 100%;
+}
+
+.section {
+  padding: 50px 0;
+  @include phone {
+    padding: 0;
+  }
+}
+.container {
+  max-width: 1164px;
+  margin: 0 auto;
+}
+
+
+.main {
+  flex: 1 0 auto;
+  margin-top: 119px;
+}
