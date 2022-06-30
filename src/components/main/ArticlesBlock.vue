@@ -1,11 +1,14 @@
 <template>
   <div class="articles">
     <div class="articles__container container">
-      <div class="articles__filters"></div>
+      <div class="articles__filters">
+        <FilterByName :authors="allAuthors" @sortingArticles="sortingArticles"/>
+        <FilterByDate @filteringArticles="filteringArticles"/>
+      </div>
       <div class="articles__items">
         <article
           class="articles__item article"
-          v-for="(article, i) in articles"
+          v-for="(article, i) in sortArticles"
           :key="i"
         >
           <router-link to="{name: 'main'}">
@@ -25,22 +28,41 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import FilterByName from '@/components/main/FilterByName';
+import FilterByDate from '@/components/main/FilterByDate';
 
 export default {
   name: 'ArticlesBlock',
+  components: {
+    FilterByName,
+    FilterByDate,
+  },
   data() {
     return {
       articles: [],
+      allAuthors: [],
+      sortArticles: [],
     }
   },
-  computed: {
-  },
   methods: {
+    filteringArticles(startDate, endDate) {
+      this.sortArticles = this.filterCoursesByPriceRange(this.articles, startDate, endDate)
+    },
+    filterCoursesByPriceRange(articles, startDate, endDate) {
+      const dateToNumber = date => date === '' ? 0 : new Date(date.toString()).getTime() +
+        new Date(date.toString()).getTime() + new Date(date.toString()).getTime() ;
+      return articles.filter(article => {
+        return (dateToNumber(article.publishedAt)) >= dateToNumber(startDate)  &&
+          (endDate !== '' ? dateToNumber(article.publishedAt) <= dateToNumber(endDate) : true);
+      })
+    },
+    sortingArticles(author) {
+      (author === 'Выбор автора') ? this.sortArticles = [...this.articles] : this.sortArticles = this.articles.filter(article => article.author === author);
+    },
     formatDate(date) {
       return new Date(date).toLocaleString('ru', {
         year: 'numeric',
@@ -51,14 +73,23 @@ export default {
     getArticlesData() {
       axios.get('https://mocki.io/v1/a5814d24-4e22-49fc-96d1-0e9ae2952afc')
       .then(res => {
-        console.log(res.data.articles)
         this.articles = res.data.articles;
+        this.sortArticles = res.data.articles;
+      })
+      .finally(() => {
+        if (this.articles.length) {
+          this.articles.forEach(article => {
+            if (article.author !== null && !this.allAuthors.includes(article.author)) {
+              this.allAuthors.push(article.author);
+            }
+          })
+        }
       })
     },
   },
   mounted() {
     this.getArticlesData();
-  }
+  },
 }
 </script>
 
@@ -68,9 +99,17 @@ export default {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: 100px;
+  }
+  &__filters {
+    position: sticky;
+    top: 88px;
+    display: flex;
+    align-items: center;
+    padding: 40px 0 ;
+    background-color: $main-bg;
   }
 }
-
 .article {
   width: calc(50% - 10px);
   max-width: 572px;
@@ -121,5 +160,4 @@ export default {
     border-radius: 10px;
   }
 }
-
 </style>
