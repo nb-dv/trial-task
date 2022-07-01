@@ -1,11 +1,15 @@
 <template>
-  <div class="articles">
+  <section class="articles">
     <div class="articles__container container">
       <div class="articles__filters">
-        <FilterByName :authors="allAuthors" @sortingArticles="sortingArticles"/>
-        <FilterByDate @filteringArticles="filteringArticles"/>
+        <FilterByName :authors="allAuthors" @sortingArticles="sortingArticles" class="articles__filter"/>
+        <FilterByDate @filteringArticles="filteringArticles" class="articles__filter"/>
       </div>
       <div class="articles__items">
+        <div class="articles__empty" v-if="!sortArticles.length">
+          В указанные даты статей нет :(
+          <span>Все статьи опубликованы 25.04.2022</span>
+        </div>
         <article
           class="articles__item article"
           v-for="(article, i) in sortArticles"
@@ -27,7 +31,7 @@
         </article>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -99,15 +103,38 @@ export default {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-top: 100px;
+  }
+  &__empty {
+    margin-bottom: 30px;
+    & > span {
+      display: block;
+      margin-top: 20px;
+      font-size: 12px;
+      color: $grey-color;
+    }
   }
   &__filters {
     position: sticky;
     top: 88px;
     display: flex;
     align-items: center;
-    padding: 40px 0 ;
+    padding: 40px 0 56px 0 ;
     background-color: $main-bg;
+    @include tablet {
+      flex-direction: column;
+    }
+  }
+  &__filter {
+    &:first-child {
+      margin-right: 20px;
+      @include tablet {
+        margin-bottom: 16px;
+        margin-right: 0;
+      }
+    }
+    @include tablet {
+      width: 100%;
+    }
   }
 }
 .article {
@@ -121,6 +148,9 @@ export default {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
+  @include small-tablet {
+    width: 100%;
+  }
   &__date {
     margin-bottom: 24px;
     font-size: 12px;

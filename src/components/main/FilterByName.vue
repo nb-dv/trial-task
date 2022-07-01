@@ -38,7 +38,6 @@ export default {
 .select {
   width: 30%;
   padding: 16px 46px;
-  margin-right: 20px;
   font-weight: 600;
   line-height: 20px;
   color: $grey-color;

@@ -78,19 +78,19 @@ input[type="date"]:before {
 .filter {
   display: flex;
   align-items: center;
-  width: 30%;
   padding: 16px;
   background-color: $white;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
   &__wrapper {
+    width: 45%;
     position: relative;
     display: flex;
     align-items: center;
   }
   &__input {
-    width: 100px;
+    width: 100%;
     font-size: 16px;
     color: $grey-color;
     outline: none;
