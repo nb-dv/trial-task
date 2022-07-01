@@ -10,12 +10,14 @@ html {
 }
 body {
   font-family: 'Montserrat', sans-serif;
-  line-height: 1.2;
+  font-weight: 400;
+  line-height: 19.5px;
   width: 100%;
   overflow-x: hidden;
   background: $main-bg;
   color: $grey-color;
 }
+
 img {
   max-width: 100%;
 }
@@ -87,10 +89,16 @@ input[type='reset'] {
 .container {
   max-width: 1164px;
   margin: 0 auto;
+  padding: 0 15px;
 }
-
 
 .main {
   flex: 1 0 auto;
-  margin-top: 119px;
+}
+
+.swiper-pagination-custom {
+  width: 29px !important;
+  height: 3px !important;
+  background: $white !important;
+  border-radius: 0 !important;
 }
