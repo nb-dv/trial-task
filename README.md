@@ -9,7 +9,8 @@
 
 ###### Посмотреть:
 https://nb-dv.github.io/trial-task/
-#####Project setup
+
+#### Project setup
 ```
 npm install
 npm run serve
