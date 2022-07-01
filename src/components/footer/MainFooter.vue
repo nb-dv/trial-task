@@ -85,6 +85,9 @@ export default {
     flex-direction: column;
     & > a {
       margin-bottom: 16px;
+      &:hover {
+        color: $light-blue-color;
+      }
     }
   }
   &__logo {
@@ -102,7 +105,7 @@ export default {
         margin-left: 0;
       }
       &:hover {
-        color: $light-blue-color;;
+        color: $light-blue-color;
       }
     }
     @include tablet {
