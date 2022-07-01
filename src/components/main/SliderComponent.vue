@@ -94,9 +94,12 @@ export default {
   margin-top: 88px;
   background: linear-gradient(100.68deg,#5991ff 13.6%,#0050ef 94.69%);
   &__slider {
+    position: relative;
     width: 100%;
     height: 546px;
-    position: relative;
+    @include phone {
+      height: 365px;
+    }
   }
   &__slide {
     height: 100%;
@@ -110,11 +113,18 @@ export default {
     bottom: 64px;
     left: 15px;
     width: auto;
+    @include phone {
+      bottom: 197px;
+    }
   }
   &__info {
     flex-direction: column;
     margin-top: 10%;
     max-width: 574px;
+    @include phone {
+      max-width: 318px;
+      margin-top: 20px;
+    }
   }
   &__header {
     color: $white;
@@ -122,19 +132,38 @@ export default {
     font-size: 40px;
     line-height: 56px;
     margin: 0;
+    @include phone {
+      font-size: 20px;
+      line-height: 24px;
+    }
   }
   &__text {
     margin-top: 24px;
     margin-bottom: 32px;
     color: $white;
+    @include phone {
+      font-size: 14px;
+      line-height: 22px;
+    }
   }
   &__image {
+    position: absolute;
+    bottom: -4px;
+    right: 0;
+    width: 50%;
+    max-width: 650px;
+    @include phone {
+      bottom: 177px;
+    }
     & > img {
-      position: absolute;
-      width: 50%;
-      max-width: 700px;
+      position: relative;
       bottom: 0;
       right: 0;
+      width: 100%;
+      height: 100%;
+    }
+    @include small-tablet {
+      width: 60%;
     }
   }
   &__link {
@@ -146,6 +175,9 @@ export default {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
+    @include phone {
+      padding: 14px 24px;
+    }
   }
 
 }
