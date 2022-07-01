@@ -17,6 +17,7 @@ body {
   background: $main-bg;
   color: $grey-color;
 }
+
 img {
   max-width: 100%;
 }
@@ -91,8 +92,13 @@ input[type='reset'] {
   padding: 0 15px;
 }
 
-
 .main {
   flex: 1 0 auto;
-  margin-top: 119px;
+}
+
+.swiper-pagination-custom {
+  width: 29px !important;
+  height: 3px !important;
+  background: $white !important;
+  border-radius: 0 !important;
 }
