@@ -7,6 +7,8 @@
 • Axios
 ``
 
+*При разработке я старалась придерживаться gitflow*
+
 ###### Посмотреть:
 https://nb-dv.github.io/trial-task/
 
